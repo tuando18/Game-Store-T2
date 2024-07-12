@@ -40,7 +40,7 @@ export default function LoginScreen({ navigation }) {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.linkText}>Sign up</Text>
+        <Text style={styles.linkText}>Sign In</Text>
       </TouchableOpacity>
     </View>
   );
@@ -49,41 +49,51 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
+    paddingHorizontal: 24
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     marginBottom: 10,
+    marginTop: 40,
+    fontWeight: "bold"
   },
   subtitle: {
-    fontSize: 16,
-    marginBottom: 20,
+    fontSize: 18,
+    marginBottom: 40,
+    fontWeight: "bold"
+
   },
   input: {
+    backgroundColor: "#ffffff",
     width: '100%',
-    height: 40,
+    height: 54,
     borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 12,
+    marginBottom: 16,
     padding: 8,
-    borderRadius: 5,
+    paddingLeft: 20,
+    borderRadius: 16,
+    fontSize: 16
   },
   button: {
-    backgroundColor: 'orange',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
+    backgroundColor: '#120990',
+    height: 54,
+    justifyContent: 'center',
+    borderRadius: 16,
+    marginBottom: 20,
     width: '100%',
     alignItems: 'center',
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "bold"
   },
   linkText: {
-    color: 'green',
+    color: 'black',
+    fontWeight: 'bold',
     fontSize: 16,
   },
 });

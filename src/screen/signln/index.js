@@ -31,7 +31,7 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
+      <Text style={styles.title}>Sign In</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -59,10 +59,10 @@ export default function RegisterScreen({ navigation }) {
         secureTextEntry
       />
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.linkText}>Log in instead</Text>
+        <Text style={styles.linkText}>Log In</Text>
       </TouchableOpacity>
     </View>
   );
@@ -71,37 +71,44 @@ export default function RegisterScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 26,
+    fontWeight: "bold",
+    marginTop: 40,
+    marginBottom: 100
   },
   input: {
+    backgroundColor: "#ffffff",
     width: '100%',
-    height: 40,
+    height: 54,
     borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 12,
+    marginBottom: 16,
     padding: 8,
-    borderRadius: 5,
+    paddingLeft: 20,
+    borderRadius: 16,
+    fontSize: 16
   },
   button: {
-    backgroundColor: 'orange',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
+    backgroundColor: '#120990',
+    height: 54,
+    justifyContent: 'center',
+    borderRadius: 16,
+    marginBottom: 20,
     width: '100%',
     alignItems: 'center',
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "bold"
   },
   linkText: {
-    color: 'green',
+    color: 'black',
+    fontWeight: 'bold',
     fontSize: 16,
   },
 });
