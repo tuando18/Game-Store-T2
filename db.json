@@ -1,0 +1,109 @@
+{
+    "products": [
+      {
+        "id": "1",
+        "nameProduct": "Test 123",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+
+      {
+        "id": "2",
+        "nameProduct": "Test 123",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+      {
+        "id": "3",
+        "nameProduct": "Test 123",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 2
+      },
+      {
+        "id": "4",
+        "nameProduct": "Test 123",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 3
+      },
+      {
+        "id": "5",
+        "nameProduct": "Test 123",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 4
+      },
+      {
+        "id": "6",
+        "nameProduct": "Test 123",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 5
+      }
+    ],
+
+    "category": [
+    {
+      "id": "1",
+      "nameCategory": "Free Fire",
+      "imageCategory" : "/img/image2_product2.jpg"
+    },
+    {
+      "id": "2",
+      "nameCategory": "Liên Quân",
+      "imageCategory" : "/img/image2_product2.jpg"
+    },
+    {
+      "id": "3",
+      "nameCategory": "Zingspeed",
+      "imageCategory" : "/img/image2_product2.jpg"
+    },
+    {
+      "id": "4",
+      "nameCategory": "CSGO",
+      "imageCategory" : "/img/image2_product2.jpg"
+    },
+    {
+      "id": "5",
+      "nameCategory": "Valorant",
+      "imageCategory" : "/img/image2_product2.jpg"
+    },
+    {
+      "id": "6",
+      "nameCategory": "Liên Minh",
+      "imageCategory" : "/img/image2_product2.jpg"
+    },
+    {
+      "id": "7",
+      "nameCategory": "PUBG Mobile",
+      "imageCategory" : "/img/image2_product2.jpg"
+    }
+  ]
+  }
