@@ -1,0 +1,146 @@
+{
+    "products": [
+      {
+        "id": "1",
+        "nameProduct": "FF01",
+        "imageDescription" : "/img/ff.png",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+      {
+        "id": "2",
+        "nameProduct": "FF02",
+        "imageDescription" : "/img/ff.png",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+      {
+        "id": "3",
+        "nameProduct": "FF03",
+        "imageDescription" : "/img/ff.png",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+      {
+        "id": "4",
+        "nameProduct": "FF04",
+        "imageDescription" : "/img/ff.png",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+      {
+        "id": "5",
+        "nameProduct": "FF05",
+        "imageDescription" : "/img/ff.png",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+
+      {
+        "id": "6",
+        "nameProduct": "FF06",
+        "imageDescription" : "/img/ff.png",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 1
+      },
+
+
+      {
+        "id": "7",
+        "nameProduct": "LQ01",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 2
+      },
+      {
+        "id": "8",
+        "nameProduct": "ZSM01",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 3
+      },
+      {
+        "id": "9",
+        "nameProduct": "PUBG01",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 4
+      },
+      {
+        "id": "10",
+        "nameProduct": "TC01",
+        "imageDescription" : "/img/image2_product2.jpg",
+        "price" : 300000,
+        "images": [
+          "/img/image1_product1.jpg",
+          "/img/image2_product2.jpg"
+        ],
+        "category": 5
+      }
+    ],
+
+    "category": [
+    {
+      "id": "1",
+      "nameCategory": "Free Fire",
+      "imageCategory" : "/img/logo-ff.png"
+    },
+    {
+      "id": "2",
+      "nameCategory": "Liên Quân",
+      "imageCategory" : "/img/logo-lq.png"
+    },
+    {
+      "id": "3",
+      "nameCategory": "Zingspeed",
+      "imageCategory" : "/img/logo-zsm.png"
+    },
+    {
+      "id": "4",
+      "nameCategory": "PUBG Mobile",
+      "imageCategory" : "/img/logo-pubg.png"
+    },
+    {
+      "id": "5",
+      "nameCategory": "Tốc Chiến",
+      "imageCategory" : "/img/logo-lmht-tc.png"
+    }
+    
+  ]
+  }

@@ -12,7 +12,7 @@ export default function LoginScreen({ navigation }) {
     signInWithEmailAndPassword(FIREBASE_AUTH, email, password)
       .then((userCredential) => {
         console.log("Logged in with:", userCredential.user.email);
-        navigation.navigate('Home');
+        navigation.navigate('MainUser');
       })
       .catch((error) => {
         console.error(error);
