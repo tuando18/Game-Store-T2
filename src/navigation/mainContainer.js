@@ -8,6 +8,8 @@ import HomeScreen from '../screen/home';
 import CategoryScreen from '../screen/category';
 import FavoriteScreen from '../screen/favorite';
 import ProfileScreen from '../screen/profile';
+import ProductDetailsScreen from '../screen/productDetails';
+import ProductDetailScreen from '../screen/productDetails';
 
 const Tab = createBottomTabNavigator();
 
@@ -46,9 +48,12 @@ const MainScreen = ({ navigation }) => {
       tabBarOptions={null}
     >
       <Tab.Screen name="Home" initialParams={{ nameUserSend: nameUserSend }} component={HomeScreen} />
-      <Tab.Screen name="Category" component={CategoryScreen} />
-      <Tab.Screen name="Favorite" component={FavoriteScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Category" component={CategoryScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Favorite" component={FavoriteScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+
+      {/* Màn Hình */}
+      <Tab.Screen name="ProductDetail" component={ProductDetailScreen} options={{ tabBarButton: () => null, headerShown: false }} />
     </Tab.Navigator>
   );
 }
