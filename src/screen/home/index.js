@@ -13,7 +13,6 @@ const HomeScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [flatListKey, setFlatListKey] = useState(0);
 
-
   useEffect(() => {
     getDataCategoryfromAPI();
   }, []);
@@ -56,7 +55,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const renderProduct = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', { product: item })}>
       <View key={item.id} style={styles.productContainer}>
         <Image source={{ uri: `http://${apiUrl.tuan}:3000${item.imageDescription}` }} style={styles.productImage} />
         <Text style={styles.productName}><Text style={{fontWeight: '700'}}>Tên: </Text>{item.nameProduct}</Text>
@@ -79,7 +78,6 @@ const HomeScreen = ({ navigation }) => {
         <TextInput
           style={styles.searchBar}
           placeholder="Search..."
-
         />
         <TouchableOpacity>
           <Ionicons name="search" size={20} color="white" style={styles.searchIcon} />
@@ -130,7 +128,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 2, // For Android shadow
-    
   },
   searchBar: {
     flex: 1,
@@ -211,14 +208,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
   },
-
   productPrice: {
     color: 'red',
     fontWeight: 'bold',
     fontSize: 18,
     marginBottom: 10,
   },
-  
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
