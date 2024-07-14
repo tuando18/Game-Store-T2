@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
+import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList, TextInput } from 'react-native';
 import apiUrl from '../../../apiUrl';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const HomeScreen = ({ navigation }) => {
   const url_Category = `http://${apiUrl.tuan}:3000/category`;
@@ -11,6 +12,7 @@ const HomeScreen = ({ navigation }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [loading, setLoading] = useState(true);
   const [flatListKey, setFlatListKey] = useState(0);
+
 
   useEffect(() => {
     getDataCategoryfromAPI();
@@ -54,11 +56,13 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const renderProduct = ({ item }) => (
-    <View key={item.id} style={styles.productContainer}>
-      <Image source={{ uri: `http://${apiUrl.tuan}:3000${item.imageDescription}` }} style={styles.productImage} />
-      <Text style={styles.productName}>{item.nameProduct}</Text>
-      <Text style={styles.productPrice}>{item.price.toLocaleString()} đ</Text>
-    </View>
+    <TouchableOpacity>
+      <View key={item.id} style={styles.productContainer}>
+        <Image source={{ uri: `http://${apiUrl.tuan}:3000${item.imageDescription}` }} style={styles.productImage} />
+        <Text style={styles.productName}><Text style={{fontWeight: '700'}}>Tên: </Text>{item.nameProduct}</Text>
+        <Text style={styles.productPrice}>{item.price.toLocaleString()} đ</Text>
+      </View>
+    </TouchableOpacity>
   );
 
   if (loading) {
@@ -71,18 +75,31 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal style={styles.categoryContainer}>
-        {categories.map((category) => (
-          <TouchableOpacity key={category.id} onPress={() => handleCategorySelect(category.id)}>
-            <View style={styles.categoryItem}>
-              <Image source={{ uri: `http://${apiUrl.tuan}:3000${category.imageCategory}` }} style={styles.categoryImage} />
-              <Text style={[styles.categoryText, selectedCategory === category.id && styles.selectedCategoryText]}>
-                {category.nameCategory}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <View style={styles.searchBarContainer}>
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search..."
+
+        />
+        <TouchableOpacity>
+          <Ionicons name="search" size={20} color="white" style={styles.searchIcon} />
+        </TouchableOpacity>
+      </View>
+
+      <View>
+        <ScrollView horizontal style={styles.categoryContainer}>
+          {categories.map((category) => (
+            <TouchableOpacity key={category.id} onPress={() => handleCategorySelect(category.id)}>
+              <View style={styles.categoryItem}>
+                <Image source={{ uri: `http://${apiUrl.tuan}:3000${category.imageCategory}` }} style={styles.categoryImage} />
+                <Text style={[styles.categoryText, selectedCategory === category.id && styles.selectedCategoryText]}>
+                  {category.nameCategory}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
       <FlatList
         key={flatListKey}
         data={products}
@@ -97,51 +114,111 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
+    marginTop: 5,
+    backgroundColor: 'whitesmoke',
+  },
+  searchBarContainer: {
     backgroundColor: '#fff',
-  },
-  categoryContainer: {
     flexDirection: 'row',
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    backgroundColor: '#f9f9f9',
-  },
-  categoryItem: {
     alignItems: 'center',
     marginHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 180,
+    paddingLeft: 15,
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2, // For Android shadow
+    
+  },
+  searchBar: {
+    flex: 1,
+    borderRadius: 180,
+    height: 44,
+  },
+  searchIcon: {
+    padding: 10,
+    backgroundColor: 'orange',
+    borderRadius: 180,
+    marginLeft: 10,
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2, // For Android shadow
+  },
+  categoryContainer: {
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2, // For Android shadow
+    marginHorizontal: 10,
+    borderRadius: 16,
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    // borderTopWidth: 1,
+    // borderBottomWidth: 1,
+    // borderColor: '#ddd',
+  },
+  categoryItem: {
+    marginVertical: 15,
+    alignItems: 'center',
+    marginHorizontal: 15,
   },
   categoryImage: {
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
+    borderRadius: 16
   },
   categoryText: {
-    fontSize: 16,
+    marginTop: 5,
+    color: "gray",
+    fontSize: 14,
+    fontWeight: '600'
   },
   selectedCategoryText: {
-    fontWeight: 'bold',
-    color: 'blue',
+    color: 'orange',
   },
   productList: {
-    padding: 10,
+    flexDirection: 'column',
+    marginTop: 10,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
   productContainer: {
+    padding: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginHorizontal: 10,
     marginBottom: 20,
-    alignItems: 'center',
+    alignContent: 'center',
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2, // For Android shadow
   },
   productImage: {
-    width: 100,
-    height: 100,
+    borderRadius: 5,
+    flex: 1,
+    width: '100%',
+    height: 180
   },
   productName: {
+    paddingVertical: 10,
     marginTop: 10,
     fontSize: 16,
   },
+
   productPrice: {
-    marginTop: 5,
-    fontSize: 14,
-    color: 'green',
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 10,
   },
+  
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',

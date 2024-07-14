@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -9,9 +9,6 @@ import CategoryScreen from '../screen/category';
 import FavoriteScreen from '../screen/favorite';
 import ProfileScreen from '../screen/profile';
 
-
-
-
 const Tab = createBottomTabNavigator();
 
 const MainScreen = ({ navigation }) => {
@@ -19,10 +16,17 @@ const MainScreen = ({ navigation }) => {
   const { nameUserSend } = route.params || {};
 
   return (
-
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
+        headerTitle: () => (
+          <Text style={{fontSize: 18, fontWeight: '700', color: 'gray'}}>Game Store T2</Text>
+        ),
+        headerRight: () => (
+          <TouchableOpacity>
+            <Ionicons name="notifications" size={25} color="gray" style={{ marginRight: 15 }} />
+          </TouchableOpacity>
+        ),
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
@@ -41,18 +45,16 @@ const MainScreen = ({ navigation }) => {
       })}
       tabBarOptions={null}
     >
-      <Tab.Screen name="Home" initialParams={{ nameUserSend: nameUserSend }} component={HomeScreen} options={{ headerShown: false }}/>
-      <Tab.Screen name="Category" component={CategoryScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Favorite" component={FavoriteScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Home" initialParams={{ nameUserSend: nameUserSend }} component={HomeScreen} />
+      <Tab.Screen name="Category" component={CategoryScreen} />
+      <Tab.Screen name="Favorite" component={FavoriteScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      {/* Màn hình  */}
-
-      {/* <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarButton: () => null, headerShown: false }} /> */}
     </Tab.Navigator>
-
   );
 }
+
 export default MainScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
