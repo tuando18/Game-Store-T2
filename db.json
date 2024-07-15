@@ -8,8 +8,13 @@
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/ff.png",
+          "/img/ff01.jpg",
+          "/img/ff02.jpg",
+          "/img/ff03.jpg",
+          "/img/ff04.jpg",
+          "/img/ff05.jpg",
+          "/img/ff06.jpg"
         ],
         "category": 1
       },
@@ -17,12 +22,17 @@
         "id": "2",
         "nameProduct": "FF02",
         "description": "Acc xin nha",
-        "imageDescription" : "/img/ff.png",
+        "imageDescription" : "/img/ff01.jpg",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/ff01.jpg",
+          "/img/ff.png",
+          "/img/ff02.jpg",
+          "/img/ff03.jpg",
+          "/img/ff04.jpg",
+          "/img/ff05.jpg",
+          "/img/ff06.jpg"
         ],
         "category": 1
       },
@@ -30,12 +40,17 @@
         "id": "3",
         "nameProduct": "FF03",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/ff.png",
+        "imageDescription" : "/img/ff02.jpg",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/ff02.jpg",
+          "/img/ff.png",
+          "/img/ff01.jpg",
+          "/img/ff03.jpg",
+          "/img/ff04.jpg",
+          "/img/ff05.jpg",
+          "/img/ff06.jpg"
         ],
         "category": 1
       },
@@ -43,12 +58,17 @@
         "id": "4",
         "nameProduct": "FF04",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/ff.png",
+        "imageDescription" : "/img/ff03.jpg",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/ff03.jpg",
+          "/img/ff.png",
+          "/img/ff01.jpg",
+          "/img/ff02.jpg",
+          "/img/ff04.jpg",
+          "/img/ff05.jpg",
+          "/img/ff06.jpg"
         ],
         "category": 1
       },
@@ -56,12 +76,17 @@
         "id": "5",
         "nameProduct": "FF05",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/ff.png",
+        "imageDescription" : "/img/ff04.jpg",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/ff04.jpg",
+          "/img/ff.png",
+          "/img/ff01.jpg",
+          "/img/ff02.jpg",
+          "/img/ff03.jpg",
+          "/img/ff05.jpg",
+          "/img/ff06.jpg"
         ],
         "category": 1
       },
@@ -70,12 +95,17 @@
         "id": "6",
         "nameProduct": "FF06",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/ff.png",
+        "imageDescription" : "/img/ff05.jpg",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/ff05.jpg",
+          "/img/ff.png",
+          "/img/ff01.jpg",
+          "/img/ff02.jpg",
+          "/img/ff03.jpg",
+          "/img/ff04.jpg",
+          "/img/ff06.jpg"
         ],
         "category": 1
       },
@@ -85,55 +115,216 @@
         "id": "7",
         "nameProduct": "LQ01",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/image2_product2.jpg",
+        "imageDescription" : "/img/lq01.png",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/lq01.png"
         ],
         "category": 2
       },
       {
         "id": "8",
-        "nameProduct": "ZSM01",
+        "nameProduct": "LQ02",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/image2_product2.jpg",
+        "imageDescription" : "/img/lq02.png",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/lq02.png"
+        ],
+        "category": 2
+      },
+      {
+        "id": "9",
+        "nameProduct": "LQ03",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/lq03.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/lq03.png"
+        ],
+        "category": 2
+      },
+      {
+        "id": "10",
+        "nameProduct": "LQ04",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/lq04.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/lq04.png"
+        ],
+        "category": 2
+      },
+      {
+        "id": "11",
+        "nameProduct": "LQ05",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/lq05.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/lq05.png"
+        ],
+        "category": 2
+      },
+      {
+        "id": "12",
+        "nameProduct": "LQ06",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/lq06.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/lq06.png"
+        ],
+        "category": 2
+      },
+      {
+        "id": "13",
+        "nameProduct": "LQ07",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/lq07.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/lq07.png"
+        ],
+        "category": 2
+      },
+      {
+        "id": "14",
+        "nameProduct": "LQ08",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/lq08.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/lq08.png"
+        ],
+        "category": 2
+      },
+
+
+      {
+        "id": "15",
+        "nameProduct": "ZSM01",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/zsm.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/zsm.png"
         ],
         "category": 3
       },
       {
-        "id": "9",
-        "nameProduct": "PUBG01",
+        "id": "16",
+        "nameProduct": "ZSM02",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/image2_product2.jpg",
+        "imageDescription" : "/img/zsm.png",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/zsm.png"
+        ],
+        "category": 3
+      },
+      {
+        "id": "17",
+        "nameProduct": "ZSM03",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/zsm.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/zsm.png"
+        ],
+        "category": 3
+      },
+
+
+      {
+        "id": "18",
+        "nameProduct": "PUBG01",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/pubg.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/pubg.png"
         ],
         "category": 4
       },
       {
-        "id": "10",
-        "nameProduct": "TC01",
+        "id": "19",
+        "nameProduct": "PUBG02",
         "description": "Acc xịn nha",
-        "imageDescription" : "/img/image2_product2.jpg",
+        "imageDescription" : "/img/pubg.png",
         "price" : 300000,
         "virtualPrice": 1000000,
         "images": [
-          "/img/image1_product1.jpg",
-          "/img/image2_product2.jpg"
+          "/img/pubg.png"
+        ],
+        "category": 4
+      },
+      {
+        "id": "20",
+        "nameProduct": "PUBG03",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/pubg.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/pubg.png"
+        ],
+        "category": 4
+      },
+
+
+      {
+        "id": "21",
+        "nameProduct": "TC01",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/tc.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/tc.png"
+        ],
+        "category": 5
+      },
+      {
+        "id": "22",
+        "nameProduct": "TC02",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/tc.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/tc.png"
+        ],
+        "category": 5
+      },
+      {
+        "id": "23",
+        "nameProduct": "TC03",
+        "description": "Acc xịn nha",
+        "imageDescription" : "/img/tc.png",
+        "price" : 300000,
+        "virtualPrice": 1000000,
+        "images": [
+          "/img/tc.png"
         ],
         "category": 5
       }
+      
     ],
+
+
 
     "category": [
     {

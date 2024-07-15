@@ -53,7 +53,7 @@ const MainScreen = ({ navigation }) => {
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
 
       {/* Màn Hình */}
-      <Tab.Screen name="ProductDetail" component={ProductDetailScreen} options={{ tabBarButton: () => null, headerShown: false }} />
+      <Tab.Screen name="ProductDetail" component={ProductDetailScreen} options={{ tabBarButton: () => null, headerShown: false, tabBarVisible: false }} />
     </Tab.Navigator>
   );
 }
