@@ -1,23 +1,57 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, FlatList, TouchableOpacity, Dimensions, Button } from 'react-native';
-import apiUrl from '../../../apiUrl';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, Image, StyleSheet, ScrollView, FlatList, TouchableOpacity, Dimensions, Alert } from 'react-native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
+import apiUrl from '../../../apiUrl';
+import { getAuth } from 'firebase/auth';
 
 const { width } = Dimensions.get('window');
 
 const ProductDetailScreen = ({ route }) => {
-  const { product } = route.params;
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const { product, initialImageIndex = 0 } = route.params;
+  const [selectedImageIndex, setSelectedImageIndex] = useState(initialImageIndex);
+  const [isFavorite, setIsFavorite] = useState(false);
   const scrollViewRef = useRef(null);
   const navigation = useNavigation();
+  const user = getAuth().currentUser;
+  const url_apiFavorite = `http://${apiUrl.tuan}:3000/favorites`;
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      tabBarVisible: false,
-    });
-  }, [navigation]);
+  useEffect(() => {
+    fetchFavorites();
+  }, [product, url_apiFavorite, user]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // Only reset image index to 0 if coming from another screen
+      setSelectedImageIndex(0);
+      if (scrollViewRef.current) {
+        scrollViewRef.current.scrollTo({ x: 0, animated: false });
+      }
+    }, [navigation])
+  );
+
+  useEffect(() => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ x: width * selectedImageIndex, animated: false });
+    }
+  }, [selectedImageIndex]);
+
+  const fetchFavorites = async () => {
+    try {
+      const res = await fetch(`${url_apiFavorite}?userId=${user.uid}`);
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json();
+      if (data.length > 0) {
+        const userFavorites = data[0].favorites || [];
+        const isFav = userFavorites.some(fav => fav.id === product.id);
+        setIsFavorite(isFav);
+      }
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
+    }
+  };
 
   const handleThumbnailPress = (index) => {
     setSelectedImageIndex(index);
@@ -27,12 +61,82 @@ const ProductDetailScreen = ({ route }) => {
   };
 
   const handleButtonPress = () => {
-    navigation.navigate('Home')
+    navigation.navigate('Home');
+  };
+
+  const handleFavoritePress = async () => {
+    const updatedFavoriteStatus = !isFavorite;
+    setIsFavorite(updatedFavoriteStatus);
+
+    try {
+      const res = await fetch(`${url_apiFavorite}?userId=${user.uid}`);
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json();
+      let userFavorites;
+
+      if (data.length > 0) {
+        userFavorites = data[0];
+        const newFavorites = updatedFavoriteStatus
+          ? [...(userFavorites.favorites || []), product]
+          : (userFavorites.favorites || []).filter(fav => fav.id !== product.id);
+
+        await updateFavorites(userFavorites.id, newFavorites);
+      } else {
+        userFavorites = {
+          userId: user.uid,
+          favorites: [product],
+        };
+        await createFavorites(userFavorites);
+      }
+
+      Alert.alert('Notification', updatedFavoriteStatus ? 'Added to favorites' : 'Removed from favorites');
+    } catch (error) {
+      console.error('Error handling favorite press:', error);
+    }
+  };
+
+  const updateFavorites = async (id, favorites) => {
+    try {
+      const res = await fetch(`${url_apiFavorite}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user.uid, favorites }),
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return await res.json();
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+    }
+  };
+
+  const createFavorites = async (userFavorites) => {
+    try {
+      const res = await fetch(url_apiFavorite, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userFavorites),
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return await res.json();
+    } catch (error) {
+      console.error('Error creating favorites:', error);
+    }
   };
 
   return (
     <View style={styles.container}>
-
       <TouchableOpacity onPress={handleButtonPress}>
         <View style={styles.btnBack}>
           <Ionicons name="chevron-back-outline" size={25} color="#000" style={{ justifyContent: 'center', marginHorizontal: 10 }} />
@@ -79,21 +183,17 @@ const ProductDetailScreen = ({ route }) => {
         />
       </View>
 
-
-
       <ScrollView style={styles.scrollView}>
-
         <Text style={styles.productName}>Tên sản phẩm: {product.nameProduct}</Text>
         <Text style={styles.productPrice}>Giá: {product.price.toLocaleString()} đ</Text>
         <Text style={styles.virtualPrice}>Giá gốc: {product.virtualPrice.toLocaleString()} đ</Text>
         <Text style={styles.productDescription}>Mô tả: {product.description || 'Không có mô tả'}</Text>
-        
       </ScrollView>
 
       <View style={styles.buttonContainer}>
         <View style={styles.heartContainer}>
-          <TouchableOpacity style={styles.btnHeart}>
-            <Ionicons name="heart-outline" size={28} color="#000" style={{ justifyContent: 'center' }} />
+          <TouchableOpacity style={styles.btnHeart} onPress={handleFavoritePress}>
+            <Ionicons name={isFavorite ? "heart" : "heart-outline"} size={28} color="#FF7777" style={{ justifyContent: 'center' }} />
             <Text style={styles.textHeart}>Lưu</Text>
           </TouchableOpacity>
         </View>
@@ -103,7 +203,6 @@ const ProductDetailScreen = ({ route }) => {
             <Text style={styles.textPay}>Mua ngay</Text>
           </TouchableOpacity>
         </View>
-
       </View>
     </View>
   );
@@ -117,7 +216,7 @@ const styles = StyleSheet.create({
   },
   btnBack: {
     flexDirection: 'row',
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   scrollView: {
     flex: 1,
@@ -126,7 +225,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 5,
   },
-
   imageDetail: {
     backgroundColor: '#fff',
     marginBottom: 15,
@@ -175,11 +273,9 @@ const styles = StyleSheet.create({
   },
   thumbnailList: {
     marginHorizontal: 10,
-
   },
   thumbnailListContent: {
     alignItems: 'center',
-
   },
   thumbnailImage: {
     width: 100,
@@ -197,20 +293,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
   },
-
   heartContainer: {
     justifyContent: 'center',
     paddingHorizontal: 20,
     borderRightWidth: 0.2,
-    borderColor: '#a5a5a5'
+    borderColor: '#a5a5a5',
   },
   btnHeart: {
     alignItems: 'center',
   },
   textHeart: {
-    color: '#000'
+    color: '#000',
   },
-
   payContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -221,13 +315,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fc621b',
     paddingVertical: 10,
     width: '100%',
-    borderRadius: 90,
+    borderRadius: 5,
   },
   textPay: {
-    textAlign: 'center',
-    fontSize: 18,
     color: '#fff',
-    fontWeight: '700'
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
