@@ -37,18 +37,21 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const getDataProductfromAPI = async (categoryId) => {
+    setLoading(true); // Bắt đầu tải dữ liệu
     try {
       const response = await fetch(`${url_Product}?category=${categoryId}`);
       const responseText = await response.text();
-      console.log(responseText); // Log response
+      console.log("Response Text:", responseText); // Log response text
       const data = JSON.parse(responseText);
-      setProducts(data);
-      setLoading(false);
+      console.log("Parsed Data:", data); // Log parsed data
+      setProducts(data); // Cập nhật danh sách sản phẩm
     } catch (error) {
       console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false); // Dừng tải dữ liệu
     }
   };
-
+  
   const handleCategorySelect = (categoryId) => {
     setSelectedCategory(categoryId);
     setFlatListKey((prevKey) => prevKey + 1);
@@ -58,12 +61,12 @@ const HomeScreen = ({ navigation }) => {
     <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', { product: item })}>
       <View key={item.id} style={styles.productContainer}>
         <Image source={{ uri: `http://${apiUrl.tuan}:3000${item.imageDescription}` }} style={styles.productImage} />
-        <Text style={styles.productName}><Text style={{fontWeight: '700'}}>Tên: </Text>{item.nameProduct}</Text>
+        <Text style={styles.productName}><Text style={{ fontWeight: '700' }}>Tên: </Text>{item.nameProduct}</Text>
         <Text style={styles.productPrice}>{item.price.toLocaleString()} đ</Text>
       </View>
     </TouchableOpacity>
   );
-
+  
   if (loading) {
     return (
       <View style={styles.loadingContainer}>

@@ -14,7 +14,10 @@ const ProductDetailScreen = ({ route }) => {
   const scrollViewRef = useRef(null);
   const navigation = useNavigation();
   const user = getAuth().currentUser;
-  const url_apiFavorite = `http://${apiUrl.tuan}:3000/favorites`;
+  const url_apiFavorite = `http://${apiUrl.tuan}:3000/favorites?userId=${user.uid}&t=${Date.now()}`;
+
+  // Log initial product
+  console.log('Initial product:', product);
 
   useEffect(() => {
     fetchFavorites();
@@ -22,7 +25,6 @@ const ProductDetailScreen = ({ route }) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      // Only reset image index to 0 if coming from another screen
       setSelectedImageIndex(0);
       if (scrollViewRef.current) {
         scrollViewRef.current.scrollTo({ x: 0, animated: false });
@@ -39,19 +41,21 @@ const ProductDetailScreen = ({ route }) => {
   const fetchFavorites = async () => {
     try {
       const res = await fetch(`${url_apiFavorite}?userId=${user.uid}`);
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       const data = await res.json();
-      if (data.length > 0) {
-        const userFavorites = data[0].favorites || [];
-        const isFav = userFavorites.some(fav => fav.id === product.id);
+      console.log('Favorites data:', data);
+      
+      if (data.favorites) {
+        const isFav = data.favorites.some(fav => fav.id === product.id);
         setIsFavorite(isFav);
+      } else {
+        setIsFavorite(false);
       }
     } catch (error) {
       console.error("Error fetching favorites:", error);
     }
   };
+  
 
   const handleThumbnailPress = (index) => {
     setSelectedImageIndex(index);
@@ -67,30 +71,34 @@ const ProductDetailScreen = ({ route }) => {
   const handleFavoritePress = async () => {
     const updatedFavoriteStatus = !isFavorite;
     setIsFavorite(updatedFavoriteStatus);
-
+    console.log('Updating favorite status to:', updatedFavoriteStatus);
+  
     try {
       const res = await fetch(`${url_apiFavorite}?userId=${user.uid}`);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       const data = await res.json();
+      console.log('Current favorite data:', data);
       let userFavorites;
-
+  
       if (data.length > 0) {
         userFavorites = data[0];
         const newFavorites = updatedFavoriteStatus
           ? [...(userFavorites.favorites || []), product]
           : (userFavorites.favorites || []).filter(fav => fav.id !== product.id);
-
-        await updateFavorites(userFavorites.id, newFavorites);
+  
+        const updateRes = await updateFavorites(userFavorites.id, newFavorites);
+        console.log('Update response:', updateRes);
       } else {
         userFavorites = {
           userId: user.uid,
           favorites: [product],
         };
-        await createFavorites(userFavorites);
+        const createRes = await createFavorites(userFavorites);
+        console.log('Create response:', createRes);
       }
-
+  
       Alert.alert('Notification', updatedFavoriteStatus ? 'Added to favorites' : 'Removed from favorites');
     } catch (error) {
       console.error('Error handling favorite press:', error);
@@ -118,13 +126,14 @@ const ProductDetailScreen = ({ route }) => {
 
   const createFavorites = async (userFavorites) => {
     try {
+      console.log('Creating favorites with data:', userFavorites);
       const res = await fetch(url_apiFavorite, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userFavorites),
+        body: JSON.stringify({ userId: userFavorites.userId, product: userFavorites.favorites[0] }),
       });
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);

@@ -10,8 +10,12 @@ const FavoriteScreen = ({ navigation }) => {
   const url_apiFavorite = `http://${apiUrl.tuan}:3000/favorites`;
 
   useEffect(() => {
-    fetchFavorites();
-  }, [url_apiFavorite, user]);
+    if (user) {
+      fetchFavorites();
+    } else {
+      console.warn('No authenticated user found');
+    }
+  }, [user]);
 
   const fetchFavorites = async () => {
     try {
@@ -21,8 +25,13 @@ const FavoriteScreen = ({ navigation }) => {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       const data = await res.json();
-      if (data.length > 0) {
-        setFavorites(data[0].favorites || []);
+      console.log('Favorites data:', data); // Log the response data
+
+      // Ensure the data structure is correct
+      if (data.favorites) {
+        setFavorites(data.favorites);
+      } else {
+        setFavorites([]);
       }
     } catch (error) {
       console.error('Error fetching favorites:', error);
@@ -33,8 +42,10 @@ const FavoriteScreen = ({ navigation }) => {
   };
 
   const onRefresh = useCallback(() => {
-    fetchFavorites();
-  }, []);
+    if (user) {
+      fetchFavorites();
+    }
+  }, [user]);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -57,7 +68,7 @@ const FavoriteScreen = ({ navigation }) => {
       <FlatList
         data={favorites}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()} // Ensure id is a string
         contentContainerStyle={styles.listContent}
         refreshControl={
           <RefreshControl
