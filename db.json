@@ -22,15 +22,15 @@
     {
       "id": "2",
       "nameProduct": "FF02",
-      "description": "Acc xin nha",
-      "imageDescription": "/img/ff01.jpg",
+      "description": "Acc xịn nha",
+      "imageDescription": "/img/ff03.jpg",
       "price": 300000,
       "virtualPrice": 1000000,
       "images": [
-        "/img/ff01.jpg",
-        "/img/ff.png",
-        "/img/ff02.jpg",
         "/img/ff03.jpg",
+        "/img/ff.png",
+        "/img/ff01.jpg",
+        "/img/ff02.jpg",
         "/img/ff04.jpg",
         "/img/ff05.jpg",
         "/img/ff06.jpg"
@@ -42,20 +42,20 @@
       "id": "3",
       "nameProduct": "FF03",
       "description": "Acc xịn nha",
-      "imageDescription": "/img/ff02.jpg",
+      "imageDescription": "/img/ff03.jpg",
       "price": 300000,
       "virtualPrice": 1000000,
       "images": [
-        "/img/ff02.jpg",
+        "/img/ff03.jpg",
         "/img/ff.png",
         "/img/ff01.jpg",
-        "/img/ff03.jpg",
+        "/img/ff02.jpg",
         "/img/ff04.jpg",
         "/img/ff05.jpg",
         "/img/ff06.jpg"
       ],
       "category": 1,
-      "isFavorite": false
+      "isFavorite": true
     },
     {
       "id": "4",
@@ -418,5 +418,7 @@
         }
       ]
     }
+  ],
+  "payments": [
   ]
 }

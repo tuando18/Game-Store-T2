@@ -1,3 +1,4 @@
+// app.js
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -14,12 +15,16 @@ const productsRouter = require('./router/productRoutes');
 const categoriesRouter = require('./router/categoryRoutes');
 const favoritesRouter = require('./router/favoriteRoutes');
 const uploadsRouter = require('./router/uploadRoutes');
+const paymentRouter = require('./router/paymentRoutes');
+const paypalRouter = require('./router/paypalRoutes');
 
 // Use routes
 app.use('/products', productsRouter);
 app.use('/category', categoriesRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/uploads', uploadsRouter);
+app.use('/payments', paymentRouter);
+app.use('/api/paypal', paypalRouter);
 
 // Import and use error handler middleware
 const errorHandler = require('./middleware/errorHandler');

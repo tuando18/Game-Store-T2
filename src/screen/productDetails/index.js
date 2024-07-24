@@ -68,6 +68,10 @@ const ProductDetailScreen = ({ route }) => {
     navigation.navigate('Home');
   };
 
+  const handleButtonPay = () => {
+    navigation.navigate('PaymentScreen', { product });
+  };
+
   const handleFavoritePress = async () => {
     const updatedFavoriteStatus = !isFavorite;
     setIsFavorite(updatedFavoriteStatus);
@@ -208,7 +212,7 @@ const ProductDetailScreen = ({ route }) => {
         </View>
 
         <View style={styles.payContainer}>
-          <TouchableOpacity style={styles.btnPay}>
+          <TouchableOpacity onPress={handleButtonPay} style={styles.btnPay}>
             <Text style={styles.textPay}>Mua ngay</Text>
           </TouchableOpacity>
         </View>
