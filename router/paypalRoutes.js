@@ -7,7 +7,8 @@ const router = express.Router();
 
 paypal.configure({
   mode: 'sandbox',
-  
+  client_id: '',
+  client_secret: '',
 });
 
 const exchangeRate = 0.000043;
