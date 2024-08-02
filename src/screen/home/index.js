@@ -13,7 +13,6 @@ const HomeScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [flatListKey, setFlatListKey] = useState(0);
 
-
   useEffect(() => {
     getDataCategoryfromAPI();
   }, []);
@@ -38,33 +37,36 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const getDataProductfromAPI = async (categoryId) => {
+    setLoading(true); // Bắt đầu tải dữ liệu
     try {
       const response = await fetch(`${url_Product}?category=${categoryId}`);
       const responseText = await response.text();
-      console.log(responseText); // Log response
+      console.log("Response Text:", responseText); // Log response text
       const data = JSON.parse(responseText);
-      setProducts(data);
-      setLoading(false);
+      console.log("Parsed Data:", data); // Log parsed data
+      setProducts(data); // Cập nhật danh sách sản phẩm
     } catch (error) {
       console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false); // Dừng tải dữ liệu
     }
   };
-
+  
   const handleCategorySelect = (categoryId) => {
     setSelectedCategory(categoryId);
     setFlatListKey((prevKey) => prevKey + 1);
   };
 
   const renderProduct = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', { product: item })}>
       <View key={item.id} style={styles.productContainer}>
         <Image source={{ uri: `http://${apiUrl.tuan}:3000${item.imageDescription}` }} style={styles.productImage} />
-        <Text style={styles.productName}><Text style={{fontWeight: '700'}}>Tên: </Text>{item.nameProduct}</Text>
+        <Text style={styles.productName}><Text style={{ fontWeight: '700' }}>Tên: </Text>{item.nameProduct}</Text>
         <Text style={styles.productPrice}>{item.price.toLocaleString()} đ</Text>
       </View>
     </TouchableOpacity>
   );
-
+  
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -79,7 +81,6 @@ const HomeScreen = ({ navigation }) => {
         <TextInput
           style={styles.searchBar}
           placeholder="Search..."
-
         />
         <TouchableOpacity>
           <Ionicons name="search" size={20} color="white" style={styles.searchIcon} />
@@ -130,7 +131,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 2, // For Android shadow
-    
   },
   searchBar: {
     flex: 1,
@@ -204,21 +204,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flex: 1,
     width: '100%',
-    height: 180
+    height: 190
   },
   productName: {
     paddingVertical: 10,
     marginTop: 10,
     fontSize: 16,
   },
-
   productPrice: {
     color: 'red',
     fontWeight: 'bold',
     fontSize: 18,
     marginBottom: 10,
   },
-  
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
