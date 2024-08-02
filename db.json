@@ -7,6 +7,8 @@
       "imageDescription": "/img/ff.png",
       "price": 300000,
       "virtualPrice": 1000000,
+      "account": "test1@gmail.com",
+      "password": "test12",
       "images": [
         "/img/ff.png",
         "/img/ff01.jpg",
@@ -20,50 +22,14 @@
       "isFavorite": false
     },
     {
-      "id": "2",
-      "nameProduct": "FF02",
-      "description": "Acc xịn nha",
-      "imageDescription": "/img/ff03.jpg",
-      "price": 300000,
-      "virtualPrice": 1000000,
-      "images": [
-        "/img/ff03.jpg",
-        "/img/ff.png",
-        "/img/ff01.jpg",
-        "/img/ff02.jpg",
-        "/img/ff04.jpg",
-        "/img/ff05.jpg",
-        "/img/ff06.jpg"
-      ],
-      "category": 1,
-      "isFavorite": true
-    },
-    {
       "id": "3",
       "nameProduct": "FF03",
       "description": "Acc xịn nha",
       "imageDescription": "/img/ff03.jpg",
       "price": 300000,
       "virtualPrice": 1000000,
-      "images": [
-        "/img/ff03.jpg",
-        "/img/ff.png",
-        "/img/ff01.jpg",
-        "/img/ff02.jpg",
-        "/img/ff04.jpg",
-        "/img/ff05.jpg",
-        "/img/ff06.jpg"
-      ],
-      "category": 1,
-      "isFavorite": true
-    },
-    {
-      "id": "4",
-      "nameProduct": "FF04",
-      "description": "Acc xịn nha",
-      "imageDescription": "/img/ff03.jpg",
-      "price": 300000,
-      "virtualPrice": 1000000,
+      "account": "test1@gmail.com",
+      "password": "test12",
       "images": [
         "/img/ff03.jpg",
         "/img/ff.png",
@@ -83,6 +49,8 @@
       "imageDescription": "/img/ff04.jpg",
       "price": 300000,
       "virtualPrice": 1000000,
+      "account": "test1@gmail.com",
+      "password": "test12",
       "images": [
         "/img/ff04.jpg",
         "/img/ff.png",
@@ -101,6 +69,8 @@
       "imageDescription": "/img/ff05.jpg",
       "price": 300000,
       "virtualPrice": 1000000,
+      "account": "test1@gmail.com",
+      "password": "test12",
       "images": [
         "/img/ff05.jpg",
         "/img/ff.png",
@@ -120,6 +90,8 @@
       "imageDescription": "/img/lq01.png",
       "price": 300000,
       "virtualPrice": 1000000,
+      "account": "test1@gmail.com",
+      "password": "test12",
       "images": [
         "/img/lq01.png"
       ],
@@ -372,25 +344,6 @@
           ],
           "category": 1,
           "isFavorite": false
-        },
-        {
-          "id": "2",
-          "nameProduct": "FF02",
-          "description": "Acc xin nha",
-          "imageDescription": "/img/ff01.jpg",
-          "price": 300000,
-          "virtualPrice": 1000000,
-          "images": [
-            "/img/ff01.jpg",
-            "/img/ff.png",
-            "/img/ff02.jpg",
-            "/img/ff03.jpg",
-            "/img/ff04.jpg",
-            "/img/ff05.jpg",
-            "/img/ff06.jpg"
-          ],
-          "category": 1,
-          "isFavorite": true
         }
       ]
     },
@@ -415,10 +368,82 @@
           ],
           "category": 1,
           "isFavorite": false
+        },
+        {
+          "id": "3",
+          "nameProduct": "FF03",
+          "description": "Acc xịn nha",
+          "imageDescription": "/img/ff03.jpg",
+          "price": 300000,
+          "virtualPrice": 1000000,
+          "images": [
+            "/img/ff03.jpg",
+            "/img/ff.png",
+            "/img/ff01.jpg",
+            "/img/ff02.jpg",
+            "/img/ff04.jpg",
+            "/img/ff05.jpg",
+            "/img/ff06.jpg"
+          ],
+          "category": 1,
+          "isFavorite": true
         }
       ]
     }
   ],
   "payments": [
+    {
+      "userId": "fxdKlyWzlXbgsuMHjKA00guEtu02",
+      "payments": [
+        {
+          "id": "2",
+          "nameProduct": "FF02",
+          "description": "Acc xịn nha",
+          "imageDescription": "/img/ff03.jpg",
+          "price": 300000,
+          "virtualPrice": 1000000,
+          "account": "test1@gmail.com",
+          "password": "test12",
+          "images": [
+            "/img/ff03.jpg",
+            "/img/ff.png",
+            "/img/ff01.jpg",
+            "/img/ff02.jpg",
+            "/img/ff04.jpg",
+            "/img/ff05.jpg",
+            "/img/ff06.jpg"
+          ],
+          "category": 1,
+          "isFavorite": true,
+          "paymentMethod": "Stripe",
+          "paymentId": "89f112b3-61a9-45e6-88e2-4903d8f0bedf",
+          "paymentDate": "2024-07-30T10:18:08.899Z"
+        },
+        {
+          "id": "4",
+          "nameProduct": "FF04",
+          "description": "Acc xịn nha",
+          "imageDescription": "/img/ff03.jpg",
+          "price": 300000,
+          "virtualPrice": 1000000,
+          "account": "test1@gmail.com",
+          "password": "test12",
+          "images": [
+            "/img/ff03.jpg",
+            "/img/ff.png",
+            "/img/ff01.jpg",
+            "/img/ff02.jpg",
+            "/img/ff04.jpg",
+            "/img/ff05.jpg",
+            "/img/ff06.jpg"
+          ],
+          "category": 1,
+          "isFavorite": true,
+          "paymentMethod": "Stripe",
+          "paymentId": "41325943-566e-4c0f-8cd8-b7608880d69b",
+          "paymentDate": "2024-07-30T10:54:45.546Z"
+        }
+      ]
+    }
   ]
 }

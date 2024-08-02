@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { View, Button, StyleSheet } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { getAuth } from 'firebase/auth';
 
-const PaymentSuccess = ({ route }) => {
+const PaymentSuccess = () => {
     const navigation = useNavigation();
+    const route = useRoute();
+    const product = route.params?.product;
+    const user = getAuth().currentUser;
+    const userId = user.uid;
 
     return (
         <View style={styles.container}>
+            <Button 
+                title="Chi tiết đơn hàng" 
+                onPress={() => {
+                    navigation.navigate('OrderDetail', { product });
+                }} 
+            />
             <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
         </View>
     );
@@ -17,10 +28,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    text: {
-        fontSize: 18,
-        marginBottom: 16,
     },
 });
 

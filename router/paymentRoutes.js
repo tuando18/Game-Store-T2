@@ -52,7 +52,7 @@ router.post('/products/:id/move-to-payments', (req, res) => {
 
     userPayments.payments.push({
       ...product,
-      paymentMethod: 'stripe', // Include payment method
+      paymentMethod: 'Stripe', // Include payment method
       paymentId: uuidv4(),
       paymentDate: new Date().toISOString(),
     });

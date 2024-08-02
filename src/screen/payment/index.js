@@ -55,8 +55,16 @@ const PaymentScreen = () => {
                     Alert.alert('Payment failed', paymentError.message);
                 } else {
                     await moveToPayments(userId, product.id);
-                    Alert.alert('Payment successful', 'Your payment was successful!');
-                    navigation.navigate('PaymentSuccess');
+    
+                    // Include payment details
+                    navigation.navigate('PaymentSuccess', { 
+                        product: { 
+                            ...product, 
+                            paymentMethod: 'stripe', 
+                            paymentId: paymentIntent, 
+                            paymentDate: new Date().toISOString() 
+                        } 
+                    });
                 }
             } else if (selectedPaymentMethod === 'paypal') {
                 const response = await fetch(`http://${apiUrl.tuan}:3000/api/paypal/create-payment`, {
@@ -82,6 +90,8 @@ const PaymentScreen = () => {
         }
     };
     
+    
+    
     const handlePaymentSuccess = async (payerId, paymentId) => {
         try {
             const user = getAuth().currentUser;
@@ -103,12 +113,15 @@ const PaymentScreen = () => {
     
             Alert.alert('Payment successful', 'Your payment was successful!');
             setPaypalVisible(false);
-            navigation.navigate('PaymentSuccess');
+            navigation.navigate('PaymentSuccess', { product });
     
         } catch (error) {
             setPaypalVisible(false);
         }
     };
+    
+    
+
 
     const moveToPayments = async (userId, productId) => {
         try {

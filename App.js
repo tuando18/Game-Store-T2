@@ -27,11 +27,11 @@ export default function App() {
 
           <Stack.Screen name="ProductDetail" component={ProductDetailScreen} options={{ headerShown: false }} />
 
-          
           <Stack.Screen name="Paypal" component={PayPal} options={{ headerShown: false }} />
           <Stack.Screen name="PaymentScreen" component={PaymentScreen} options={{ headerShown: false }} />
           <Stack.Screen name="PaymentCancelled" component={PaymentCancelled} />
-          <Stack.Screen name="PaymentSuccess" component={PaymentSuccess} />
+          <Stack.Screen name="PaymentSuccess" component={PaymentSuccess} options={{ headerShown: false }}/>
+
 
         </Stack.Navigator>
       </NavigationContainer>

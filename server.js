@@ -17,6 +17,7 @@ const favoritesRouter = require('./router/favoriteRoutes');
 const uploadsRouter = require('./router/uploadRoutes');
 const paymentRouter = require('./router/paymentRoutes');
 const paypalRouter = require('./router/paypalRoutes');
+const orderRouter = require('./router/orderRoutes');
 
 // Use routes
 app.use('/products', productsRouter);
@@ -25,7 +26,7 @@ app.use('/favorites', favoritesRouter);
 app.use('/uploads', uploadsRouter);
 app.use('/payments', paymentRouter);
 app.use('/api/paypal', paypalRouter);
-
+app.use('/orderhistory', orderRouter);
 // Import and use error handler middleware
 const errorHandler = require('./middleware/errorHandler');
 app.use(errorHandler);
